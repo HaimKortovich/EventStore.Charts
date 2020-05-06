@@ -22,4 +22,9 @@ spec:
       protocol: TCP
       port: {{ .Values.extHttpPort }}
       targetPort: {{ .Values.extHttpPort }}
+  {{- if (.Values.external.enabled) }}
+  type: ExternalName
+  externalName: "{{ include "eventstore.fullname" . }}.{{ .Values.external.name }}.svc.cluster.local"
+  {{- else }}
   clusterIP: None
+  {{- end }}

@@ -34,6 +34,11 @@ Create chart name and version as used by the chart label.
 {{/*
 Create DNS used to access the service from within the cluster.
 */}}
+
 {{- define "eventstore.dns" -}}
-{{ include "eventstore.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+    {{- if .Values.external.enabled -}}
+    {{ .Values.external.name }}
+    {{- else -}}
+    {{ include "eventstore.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
+    {{- end -}}
 {{- end -}}

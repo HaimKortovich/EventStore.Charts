@@ -142,3 +142,7 @@ podAnnotations: {}
 tolerations: []
 
 affinity: {}
+
+external:
+  enabled: false
+  name: ""
