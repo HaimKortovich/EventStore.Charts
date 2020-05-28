@@ -20,6 +20,8 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "eventstore.name" . }}-post-install
         app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       restartPolicy: OnFailure
       volumes:
