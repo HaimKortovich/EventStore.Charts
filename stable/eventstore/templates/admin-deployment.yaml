@@ -21,10 +21,9 @@ spec:
         app.kubernetes.io/name: {{ include "eventstore.name" . }}-admin
         app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/component: admin
-        sidecar.istio.io/inject: "false"
       {{- if .Values.podAnnotations }}
       annotations:
-{{ toYaml .Values.podAnnotations | indent 8 }}
+{{ toYaml .Values.adminPodAnnotations | indent 8 }}
       {{- end }}
     spec:
       containers:
