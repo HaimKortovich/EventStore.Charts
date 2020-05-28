@@ -33,6 +33,12 @@ spec:
             preStop:
               exec:
                 command: ["/usr/sbin/nginx","-s","quit"]
+            postStart:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - sleep 10
           volumeMounts:
             - name: config
               mountPath: "/etc/nginx/conf.d"
