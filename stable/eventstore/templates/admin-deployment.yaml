@@ -21,6 +21,7 @@ spec:
         app.kubernetes.io/name: {{ include "eventstore.name" . }}-admin
         app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/component: admin
+        sidecar.istio.io/inject: "false"
       {{- if .Values.podAnnotations }}
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}
@@ -33,12 +34,6 @@ spec:
             preStop:
               exec:
                 command: ["/usr/sbin/nginx","-s","quit"]
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
-                  - sleep 10
           volumeMounts:
             - name: config
               mountPath: "/etc/nginx/conf.d"
