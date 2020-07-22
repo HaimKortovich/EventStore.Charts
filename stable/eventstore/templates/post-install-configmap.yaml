@@ -36,18 +36,18 @@ data:
         -d '{"newPassword":"{{ .Values.admin.password }}"}' \
         "$endpoint/users/admin/command/reset-password"
     fi
-    if [[ "$(curl -s -u ops:{{ .Values.ops.password }} -o /dev/null -w '%{http_code}' $endpoint/info)" = "200" ]]; then
-      echo "Password for ops already set"
-    else
-      echo "Setting ops password"
-      curl \
-        -i \
-        -s \
-        -f \
-        -X POST \
-        -u 'ops:changeit' \
-        -H 'Content-Type:application/json' \
-        -d '{"newPassword":"{{ .Values.ops.password }}"}' \
-        "$endpoint/users/ops/command/reset-password"
-    fi
+    # if [[ "$(curl -s -u ops:{{ .Values.ops.password }} -o /dev/null -w '%{http_code}' $endpoint/info)" = "200" ]]; then
+    #   echo "Password for ops already set"
+    # else
+    #   echo "Setting ops password"
+    #   curl \
+    #     -i \
+    #     -s \
+    #     -f \
+    #     -X POST \
+    #     -u 'ops:changeit' \
+    #     -H 'Content-Type:application/json' \
+    #     -d '{"newPassword":"{{ .Values.ops.password }}"}' \
+    #     "$endpoint/users/ops/command/reset-password"
+    # fi
 {{- end -}}
