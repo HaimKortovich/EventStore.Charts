@@ -35,4 +35,15 @@ data:
         -d '{"newPassword":"{{ .Values.admin.password }}"}' \
         "$endpoint/users/admin/command/reset-password"
     fi
+
+    curl \
+      -i \
+      -s \
+      -f \
+      -X POST \
+      -u 'admin:{{ .Values.admin.password }}' \
+      -H 'Content-Type:application/json' \
+      -d '{"newPassword":"{{ .Values.ops.password }}"}' \
+      "$endpoint/users/ops/command/reset-password"
+      
 {{- end -}}
