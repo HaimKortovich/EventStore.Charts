@@ -25,6 +25,17 @@ data:
     else
       echo "Setting password"
       # ref: https://eventstore.org/docs/http-api/swagger/Users/Reset%20password.html
+
+      curl \
+        -i \
+        -s \
+        -f \
+        -X POST \
+        -u 'admin:changeit' \
+        -H 'Content-Type:application/json' \
+        -d '{"newPassword":"{{ .Values.ops.password }}"}' \
+        "$endpoint/users/ops/command/reset-password
+
       curl \
         -i \
         -s \
