@@ -21,20 +21,10 @@ data:
     done
     # check if the password is already set to make this operation idempotent
     if [[ "$(curl -s -u admin:{{ .Values.admin.password }} -o /dev/null -w '%{http_code}' $endpoint/info)" = "200" ]]; then
-      echo "Password already set"
+      echo "Password for admin already set"
     else
-      echo "Setting password"
+      echo "Setting admin password"
       # ref: https://eventstore.org/docs/http-api/swagger/Users/Reset%20password.html
-
-      curl \
-        -i \
-        -s \
-        -f \
-        -X POST \
-        -u 'admin:changeit' \
-        -H 'Content-Type:application/json' \
-        -d '{"newPassword":"{{ .Values.ops.password }}"}' \
-        "$endpoint/users/ops/command/reset-password
 
       curl \
         -i \
@@ -45,5 +35,19 @@ data:
         -H 'Content-Type:application/json' \
         -d '{"newPassword":"{{ .Values.admin.password }}"}' \
         "$endpoint/users/admin/command/reset-password"
+    fi
+    if [[ "$(curl -s -u ops:{{ .Values.ops.password }} -o /dev/null -w '%{http_code}' $endpoint/info)" = "200" ]]; then
+      echo "Password for ops already set"
+    else
+      echo "Setting ops password"
+      curl \
+        -i \
+        -s \
+        -f \
+        -X POST \
+        -u 'ops:changeit' \
+        -H 'Content-Type:application/json' \
+        -d '{"newPassword":"{{ .Values.ops.password }}"}' \
+        "$endpoint/users/ops/command/reset-password"
     fi
 {{- end -}}
