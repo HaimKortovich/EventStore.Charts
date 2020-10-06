@@ -14,11 +14,11 @@ spec:
     app.kubernetes.io/name: {{ include "eventstore.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
-    - name: ext-tcp-port
+    - name: tcp-port
       protocol: TCP
       port: {{ .Values.extTcpPort }}
       targetPort: {{ .Values.extTcpPort }}
-    - name: ext-http-port
+    - name: http-port
       protocol: TCP
       port: {{ .Values.extHttpPort }}
       targetPort: {{ .Values.extHttpPort }}
