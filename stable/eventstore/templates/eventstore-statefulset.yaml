@@ -80,13 +80,8 @@ spec:
               port: {{ .Values.extHttpPort }}
             initialDelaySeconds: 15
             timeoutSeconds: 5
-            periodSeconds: 15
-          startupProbe:
-            httpGet:
-              path: /stats
-              port: {{ .Values.extHttpPort }}
-            failureThreshold: 90
-            periodSeconds: 10
+            periodSeconds: 30
+            failureThreshold: 30
           readinessProbe:
             httpGet:
               path: /stats
