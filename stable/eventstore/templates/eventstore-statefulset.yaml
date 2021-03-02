@@ -125,7 +125,6 @@ spec:
         {{- end }}
       {{- end }}
       spec:
-        persistentVolumeReclaimPolicy: Retain
         accessModes:
           - {{ .Values.persistence.accessMode | quote }}
         resources:
