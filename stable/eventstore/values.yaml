@@ -40,7 +40,7 @@ clusterSize: 1
 admin:
   ##
   ## Image with curl installed to make POST request for setting credentials.
-  jobImage: tutum/curl
+  jobImage: curlimages/curl
   jobImageTag: latest
   ##
   ## Admin password. Set using a separate `values.yaml` file
