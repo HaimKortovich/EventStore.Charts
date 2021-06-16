@@ -17,7 +17,7 @@ data:
     apt install curl -y
     endpoint="http://{{ include "eventstore.dns" . }}:{{ .Values.extHttpPort }}"
     # wait until the admin user is available
-    while [[ "$(curl --write-out %{http_code} --silent --output  $endpoint/users/admin)" -ne 200 ]]; do
+    while [[ "$(curl -s -o /dev/null -w '%{http_code}' $endpoint/users/admin)" -ne 200 ]]; do
     echo "waiting for Event Store at $endpoint..."
     sleep 5
     done
