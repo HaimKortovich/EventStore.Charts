@@ -15,6 +15,7 @@ data:
   ## External TCP port.
   EVENTSTORE_EXT_TCP_PORT: {{ quote .Values.extTcpPort }}
   ## External HTTP port.
+  EVENTSTORE_EXT_HTTP_PORT: {{ quote .Values.extHttpPort }}
   EVENTSTORE_HTTP_PORT: {{ quote .Values.extHttpPort }}
   ## The number of nodes in the cluster. 
   EVENTSTORE_CLUSTER_SIZE: {{ quote .Values.clusterSize }}
