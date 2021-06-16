@@ -26,6 +26,12 @@ spec:
 {{ toYaml .Values.adminPodAnnotations | indent 8 }}
       {{- end }}
     spec:
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range .Values.imagePullSecrets }}
+        - name: {{ . }}
+      {{- end}}
+      {{- end }}
       containers:
         - name: proxy
           image: "{{ .Values.admin.proxyImage }}:{{ .Values.admin.proxyImageTag }}"
