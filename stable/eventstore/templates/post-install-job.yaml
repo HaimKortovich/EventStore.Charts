@@ -31,6 +31,8 @@ spec:
             defaultMode: 0744
       containers:
         - name: {{ include "eventstore.fullname" . }}-post-install
+          securityContext:
+            runAsUser: 0
           image: "{{ .Values.admin.jobImage }}:{{ .Values.admin.jobImageTag }}"
           command: ["/usr/local/script/post-install.sh"]
           volumeMounts:
