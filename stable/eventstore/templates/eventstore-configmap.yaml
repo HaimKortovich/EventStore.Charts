@@ -21,7 +21,7 @@ data:
   ## DNS name from which other nodes can be discovered. 
   EVENTSTORE_CLUSTER_DNS: {{ include "eventstore.dns" . }}
   ## Port on which nodes should gossip
-  EVENTSTORE_CLUSTER_GOSSIP_PORT: {{ quote .Values.intHttpPort }}
+  EVENTSTORE_CLUSTER_GOSSIP_PORT: {{ quote .Values.extHttpPort }}
   ## The amount of drift, in ms, between clocks on nodes allowed before gossip is rejected.
   EVENTSTORE_GOSSIP_ALLOWED_DIFFERENCE_MS: {{ quote .Values.gossipAllowedDiffMs }}
   EVENTSTORE_RUN_PROJECTIONS: {{ quote .Values.runProjections }}
