@@ -40,8 +40,8 @@ clusterSize: 1
 admin:
   ##
   ## Image with curl installed to make POST request for setting credentials.
-  jobImage: curlimages/curl
-  jobImageTag: latest
+  jobImage: ubuntu
+  jobImageTag: bionic
   ##
   ## Admin password. Set using a separate `values.yaml` file
   ## or using `--set admin.password=<your admin password>.

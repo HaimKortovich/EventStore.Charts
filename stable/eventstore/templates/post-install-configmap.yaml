@@ -13,6 +13,8 @@ data:
   post-install.sh: |
     #!/bin/bash
     set -e
+    apt update
+    apt install curl
     endpoint="http://{{ include "eventstore.dns" . }}:{{ .Values.extHttpPort }}"
     # wait until the admin user is available
     while [[ "$(curl -s -o /dev/null -w '%{http_code}' $endpoint/users/admin)" != "200" ]]; do 
