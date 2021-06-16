@@ -73,9 +73,6 @@ podDisruptionBudget:
 ## External IP Address. Remove or set to `null` to disable connections from outside the cluster.
 extIp: 0.0.0.0
 ##
-## Internal HTTP port.
-intHttpPort: 2112
-##
 ## External HTTP port.
 extHttpPort: 2113
 ##
@@ -146,3 +143,7 @@ affinity: {}
 external:
   enabled: false
   name: ""
+
+runProjections: All
+insecure: true
+enableAtomPubOverHTTP: true

@@ -45,6 +45,8 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          securityContext:
+            runAsUser: 0
           image: "{{ .Values.image }}:{{ .Values.imageTag }}"
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           envFrom:
@@ -72,7 +74,6 @@ spec:
           ports:
             - containerPort: {{ .Values.intTcpPort }}
             - containerPort: {{ .Values.extTcpPort }}
-            - containerPort: {{ .Values.intHttpPort }}
             - containerPort: {{ .Values.extHttpPort }}
           livenessProbe:
             httpGet:
