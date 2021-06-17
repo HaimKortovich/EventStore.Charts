@@ -18,7 +18,7 @@ spec:
       protocol: TCP
       port: {{ .Values.extTcpPort }}
       targetPort: {{ .Values.extTcpPort }}
-    - name: http-port
+    - name: http2-port
       protocol: TCP
       port: {{ .Values.extHttpPort }}
       targetPort: {{ .Values.extHttpPort }}
