@@ -16,5 +16,5 @@ echo
 helm package stable/eventstore > /dev/null
 mv eventstore-*.tgz docs
 echo Packaged chart version $version
-helm repo index docs --url https://eventstore.github.io/EventStore.Charts
+helm repo index docs --url https://haimkortovich.github.io/EventStore.Charts
 echo Updated index.yaml
