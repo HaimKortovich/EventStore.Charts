@@ -6,7 +6,7 @@
 image: eventstore/eventstore
 ##
 ## Event Store image tag
-imageTag: release-4.1.1-hotfix1
+imageTag: 21.10.10-buster-slim
 ##
 ## Specify a imagePullPolicy
 ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -103,11 +103,6 @@ scavenging:
 persistence:
   enabled: false
 
-  ## A manually managed Persistent Volume and Claim
-  ## Requires persistence.enabled: true
-  ## If defined, PVC must be created manually before volume will be bound
-  # existingClaim:
-
   ## database data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -115,13 +110,21 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
-  accessMode: ReadWriteOnce
-  size: 8Gi
-  mountPath: /var/lib/eventstore
-  annotations: {}
+  index:
+    # storageClass: "-"
+    accessMode: ReadWriteOnce
+    size: 8Gi
+    mountPath: /var/lib/eventstore-index
+    annotations: {}
+  data:
+    # storageClass: "-"
+    accessMode: ReadWriteOnce
+    size: 8Gi
+    mountPath: /var/lib/eventstore-data
+    annotations: {}
 
-resources: {}
+resources:
+  {}
   ## If you want to specify resources, uncomment the following
   ## lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   ##

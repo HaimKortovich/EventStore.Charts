@@ -16,15 +16,17 @@ data:
   EVENTSTORE_EXT_TCP_PORT: {{ quote .Values.extTcpPort }}
   ## External HTTP port.
   EVENTSTORE_EXT_HTTP_PORT: {{ quote .Values.extHttpPort }}
-  EVENTSTORE_HTTP_PORT: {{ quote .Values.extHttpPort }}
-  ## The number of nodes in the cluster. 
+  ## The number of nodes in the cluster.
   EVENTSTORE_CLUSTER_SIZE: {{ quote .Values.clusterSize }}
   ## DNS name from which other nodes can be discovered. 
-  EVENTSTORE_CLUSTER_DNS: {{ include "eventstore.dns" . }}
+  # EVENTSTORE_CLUSTER_DNS: {{ include "eventstore.dns" . }}
   ## Port on which nodes should gossip
-  EVENTSTORE_CLUSTER_GOSSIP_PORT: {{ quote .Values.extHttpPort }}
+  # EVENTSTORE_CLUSTER_GOSSIP_PORT: {{ quote .Values.extHttpPort }}
   ## The amount of drift, in ms, between clocks on nodes allowed before gossip is rejected.
-  EVENTSTORE_GOSSIP_ALLOWED_DIFFERENCE_MS: {{ quote .Values.gossipAllowedDiffMs }}
+  # EVENTSTORE_GOSSIP_ALLOWED_DIFFERENCE_MS: {{ quote .Values.gossipAllowedDiffMs }}
+  EVENTSTORE_INDEX:  {{ quote .Values.persistence.index.mountPath }}
+  EVENTSTORE_DB:  {{ quote .Values.persistence.data.mountPath }}
+
   EVENTSTORE_RUN_PROJECTIONS: {{ quote .Values.runProjections }}
   EVENTSTORE_INSECURE: {{ quote .Values.insecure }}
   EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP: {{ quote .Values.enableAtomPubOverHTTP }}
