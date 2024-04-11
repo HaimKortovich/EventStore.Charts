@@ -12,8 +12,6 @@ metadata:
 data:
   ## Internal TCP port.
   EVENTSTORE_INT_TCP_PORT: {{ quote .Values.intTcpPort }}
-  ## External TCP port.
-  EVENTSTORE_EXT_TCP_PORT: {{ quote .Values.extTcpPort }}
   ## External HTTP port.
   EVENTSTORE_HTTP_PORT: {{ quote .Values.extHttpPort }}
   ## The number of nodes in the cluster.

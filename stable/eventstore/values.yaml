@@ -6,7 +6,7 @@
 image: eventstore/eventstore
 ##
 ## Event Store image tag
-imageTag: 21.10.10-buster-slim
+imageTag: 24.2
 ##
 ## Specify a imagePullPolicy
 ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -78,9 +78,6 @@ extHttpPort: 2113
 ##
 ## Internal TCP port.
 intTcpPort: 1112
-##
-## External TCP port.
-extTcpPort: 1113
 ##
 ## The amount of drift, in ms, between clocks on nodes allowed before gossip is rejected.
 gossipAllowedDiffMs: 600000
