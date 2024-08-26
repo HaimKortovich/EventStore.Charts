@@ -49,6 +49,14 @@ spec:
             runAsUser: 0
           image: "{{ .Values.image }}:{{ .Values.imageTag }}"
           imagePullPolicy: {{ .Values.imagePullPolicy }}
+          {{- if $.Values.security.admin.passwordSecretRef.name }}
+          env:
+            - name: EVENTSTORE_DEFAULT_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.security.admin.passwordSecretRef.name | quote }}
+                  key: {{ $.Values.security.admin.passwordSecretRef.key | quote }}
+          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ include "eventstore.fullname" . }}-env

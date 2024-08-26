@@ -147,3 +147,9 @@ external:
 runProjections: All
 insecure: true
 enableAtomPubOverHTTP: true
+
+security:
+  admin:
+    passwordSecretRef:
+      name: null
+      key: null
