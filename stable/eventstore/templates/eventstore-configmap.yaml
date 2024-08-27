@@ -25,6 +25,10 @@ data:
   EVENTSTORE_INDEX:  {{ quote .Values.persistence.index.mountPath }}
   EVENTSTORE_DB:  {{ quote .Values.persistence.data.mountPath }}
 
+  {{- if .Values.security.certificates.autogenerate.enabled }}
+  EVENTSTORE_CERTIFICATE_FILE: /etc/ssl/cert/node.ca.crt
+  {{- end }}
+
   EVENTSTORE_RUN_PROJECTIONS: {{ quote .Values.runProjections }}
   EVENTSTORE_INSECURE: {{ quote .Values.insecure }}
   EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP: {{ quote .Values.enableAtomPubOverHTTP }}
