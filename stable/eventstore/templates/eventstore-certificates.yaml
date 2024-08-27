@@ -12,7 +12,7 @@ metadata:
   name: {{ include "eventstore.fullname" . }}-ca-cert
 spec:
   isCA: true
-  name: {{ include "eventstore.fullname" . }}-ca-cert
+  secretName: {{ include "eventstore.fullname" . }}-ca-cert
   privateKey:
     algorithm: ECDSA
     size: 256
