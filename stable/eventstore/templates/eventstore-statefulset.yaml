@@ -65,6 +65,11 @@ spec:
                 secretKeyRef:
                   name: {{ include "eventstore.fullname" . }}-admin-password
                   key: password
+            - name: EVENTSTORE_DEFAULT_OPS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eventstore.fullname" . }}-admin-password
+                  key: password
           {{- end }}
           envFrom:
             - configMapRef:
@@ -94,12 +99,39 @@ spec:
               mountPath: {{ .Values.persistence.data.mountPath }}
             - name: index
               mountPath: {{ .Values.persistence.index.mountPath }}
+            {{- if .Values.security.certificates.autogenerate.enabled }}
+            - name: certificates
+              mountPath: /etc/ssl/certs
+            {{- end }}
       volumes:
       {{- if (not .Values.persistence.enabled) }}
         - name: data
           emptyDir: {}
         - name: index
           emptyDir: {}
+      {{- end }}
+      {{- if .Values.security.certificates.autogenerate.enabled }}
+        - name: certificates
+          projected:
+            sources:
+              - secret:
+                  name: {{ include "eventstore.fullname" . }}-node
+                  items:
+                    - key: ca.crt
+                      path: node.ca.crt
+                    - key: tls.crt
+                      path: node.tls.crt
+                    - key: tls.key
+                      path: node.tls.key
+              - secret:
+                  name: {{ include "eventstore.fullname" . }}-client-root
+                  items:
+                    - key: ca.crt
+                      path: client.ca.crt
+                    - key: tls.crt
+                      path: client.tls.crt
+                    - key: tls.key
+                      path: client.tls.key
       {{- end }}
 {{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
   volumeClaimTemplates:
