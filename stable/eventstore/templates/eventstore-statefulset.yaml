@@ -109,9 +109,6 @@ spec:
         namespace: {{ $.Release.Namespace | quote }}
         labels:
           app.kubernetes.io/name: {{ include "eventstore.name" $ }}
-          helm.sh/chart: {{ include "eventstore.chart" $ }}
-          app.kubernetes.io/instance: {{ $.Release.Name }}
-          app.kubernetes.io/managed-by: {{ $.Release.Service }}
       {{- with .annotations }}
         annotations:
         {{- range $key, $value := . }}
@@ -139,9 +136,6 @@ spec:
         namespace: {{ $.Release.Namespace | quote }}
         labels:
           app.kubernetes.io/name: {{ include "eventstore.name" $ }}
-          helm.sh/chart: {{ include "eventstore.chart" $ }}
-          app.kubernetes.io/instance: {{ $.Release.Name }}
-          app.kubernetes.io/managed-by: {{ $.Release.Service }}
       {{- with .annotations }}
         annotations:
         {{- range $key, $value := . }}
