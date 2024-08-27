@@ -26,7 +26,7 @@ data:
   EVENTSTORE_DB:  {{ quote .Values.persistence.data.mountPath }}
 
   {{- if .Values.security.certificates.autogenerate.enabled }}
-  EVENTSTORE_CERTIFICATE_FILE: /etc/ssl/cert/node.ca.crt
+  EVENTSTORE_CERTIFICATE_FILE: /etc/ssl/certs/node.ca.crt
   {{- end }}
 
   EVENTSTORE_RUN_PROJECTIONS: {{ quote .Values.runProjections }}
