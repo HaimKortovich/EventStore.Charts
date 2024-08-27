@@ -3,6 +3,8 @@ kind: StatefulSet
 metadata:
   name: {{ include "eventstore.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    reloader.stakater.com/search: "true"
   labels:
     app.kubernetes.io/name: {{ include "eventstore.name" . }}
     helm.sh/chart: {{ include "eventstore.chart" . }}
@@ -56,6 +58,13 @@ spec:
                 secretKeyRef:
                   name: {{ $.Values.security.admin.passwordSecretRef.name | quote }}
                   key: {{ $.Values.security.admin.passwordSecretRef.key | quote }}
+          {{- else if $.Values.security.admin.autogenerateSecret.enabled }}
+          env:
+            - name: EVENTSTORE_DEFAULT_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eventstore.fullname" . }}-admin-password
+                  key: password
           {{- end }}
           envFrom:
             - configMapRef:

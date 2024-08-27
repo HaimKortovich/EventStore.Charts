@@ -150,6 +150,8 @@ enableAtomPubOverHTTP: true
 
 security:
   admin:
+    autogenerateSecret:
+      enabled: true
     passwordSecretRef:
       name: null
       key: null
