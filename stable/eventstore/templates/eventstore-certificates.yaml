@@ -9,55 +9,6 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: {{ include "eventstore.fullname" . }}-ca-cert
-spec:
-  isCA: true
-  secretName: {{ include "eventstore.fullname" . }}-ca-cert
-  privateKey:
-    algorithm: ECDSA
-    size: 256
-  commonName: root
-  subject:
-    organizations:
-      - Eventstore
-  issuerRef:
-    name: {{ include "eventstore.fullname" . }}-selfsigned-issuer
-    group: cert-manager.io
-    kind: Issuer
----
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: {{ include "eventstore.fullname" . }}-ca-issuer
-spec:
-  ca:
-    secretName: {{ include "eventstore.fullname" . }}-ca-cert
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: {{ include "eventstore.fullname" . }}-client-root
-spec:
-  usages:
-    - digital signature
-    - key encipherment
-    - client auth
-  privateKey:
-    algorithm: RSA
-    size: 2048
-  commonName: root
-  subject:
-    organizations:
-      - Eventstore
-  secretName: {{ include "eventstore.fullname" . }}-client-root
-  issuerRef:
-    name: {{ include "eventstore.fullname" . }}-ca-issuer
-    kind: Issuer
-    group: cert-manager.io
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
   name: {{ include "eventstore.fullname" . }}-node
 spec:
   usages:
@@ -84,8 +35,7 @@ spec:
     - {{ printf "%s.%s.svc.%s" (include "eventstore.fullname" .) .Release.Namespace "cluster.local" | quote }}
   secretName: {{ include "eventstore.fullname" . }}-node
   issuerRef:
-    name: {{ include "eventstore.fullname" . }}-ca-issuer
+    name: {{ include "eventstore.fullname" . }}-selfsigned-issuer
     kind: Issuer
     group: cert-manager.io
----
 {{ end }}

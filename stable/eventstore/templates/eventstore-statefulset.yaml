@@ -123,15 +123,6 @@ spec:
                       path: node.tls.crt
                     - key: tls.key
                       path: node.tls.key
-              - secret:
-                  name: {{ include "eventstore.fullname" . }}-client-root
-                  items:
-                    - key: ca.crt
-                      path: client.ca.crt
-                    - key: tls.crt
-                      path: client.tls.crt
-                    - key: tls.key
-                      path: client.tls.key
       {{- end }}
 {{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
   volumeClaimTemplates:
