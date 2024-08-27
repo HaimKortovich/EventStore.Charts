@@ -81,6 +81,9 @@ spec:
             httpGet:
               path: /health/live
               port: {{ .Values.extHttpPort }}
+              {{- if .Values.security.certificates.autogenerate.enabled }}
+              scheme: HTTPS
+              {{- end }}
             initialDelaySeconds: 15
             timeoutSeconds: 5
             periodSeconds: 30
@@ -89,6 +92,9 @@ spec:
             httpGet:
               path: /health/live
               port: {{ .Values.extHttpPort }}
+              {{- if .Values.security.certificates.autogenerate.enabled }}
+              scheme: HTTPS
+              {{- end }}
             initialDelaySeconds: 15
             timeoutSeconds: 5
             periodSeconds: 15
