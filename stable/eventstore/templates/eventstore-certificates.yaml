@@ -82,7 +82,7 @@ spec:
     - {{ printf "*.%s.%s" (include "eventstore.fullname" .) .Release.Namespace | quote }}
     - {{ printf "*.%s.%s.svc.%s" (include "eventstore.fullname" .) .Release.Namespace "cluster.local" | quote }}
     - {{ printf "%s.%s.svc.%s" (include "eventstore.fullname" .) .Release.Namespace "cluster.local" | quote }}
-  secretName: {{ $.Values.serviceUnitName }}-node
+  secretName: {{ include "eventstore.fullname" . }}-node
   issuerRef:
     name: {{ include "eventstore.fullname" . }}-ca-issuer
     kind: Issuer
