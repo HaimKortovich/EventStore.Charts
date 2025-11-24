@@ -32,7 +32,7 @@ data:
   # ----------------------------------------------------------------------------
 
   ## Internal TCP port.
-  KURRENTDB_ALLOW_UNKNOWN_OPTION: "true"
+  KURRENTDB_ALLOW_UNKNOWN_OPTIONS: "true"
   KURRENTDB_REPLICATION_PORT: {{ quote .Values.intTcpPort }}
   ## External HTTP port.
   KURRENTDB_NODE_PORT: {{ quote .Values.extHttpPort }}
