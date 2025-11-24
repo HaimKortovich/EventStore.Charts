@@ -3,10 +3,10 @@
 
 ## Event Store image repository.
 ## ref: https://hub.docker.com/r/eventstore/eventstore/
-image: eventstore/eventstore
+image: kurrentplatform/kurrentdb
 ##
 ## Event Store image tag
-imageTag: 24.2
+imageTag: 25.1.1
 ##
 ## Specify a imagePullPolicy
 ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'

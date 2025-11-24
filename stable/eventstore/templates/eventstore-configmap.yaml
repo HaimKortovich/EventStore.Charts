@@ -28,6 +28,28 @@ data:
   EVENTSTORE_RUN_PROJECTIONS: {{ quote .Values.runProjections }}
   EVENTSTORE_INSECURE: {{ quote .Values.insecure }}
   EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP: {{ quote .Values.enableAtomPubOverHTTP }}
+
+  # ----------------------------------------------------------------------------
+
+  ## Internal TCP port.
+  KURRENTDB_INT_TCP_PORT: {{ quote .Values.intTcpPort }}
+  ## External HTTP port.
+  KURRENTDB_HTTP_PORT: {{ quote .Values.extHttpPort }}
+  ## The number of nodes in the cluster.
+  KURRENTDB_CLUSTER_SIZE: {{ quote .Values.clusterSize }}
+  ## DNS name from which other nodes can be discovered.
+  # KURRENTDB_CLUSTER_DNS: {{ include "eventstore.dns" . }}
+  ## Port on which nodes should gossip
+  # KURRENTDB_CLUSTER_GOSSIP_PORT: {{ quote .Values.extHttpPort }}
+  ## The amount of drift, in ms, between clocks on nodes allowed before gossip is rejected.
+  # KURRENTDB_GOSSIP_ALLOWED_DIFFERENCE_MS: {{ quote .Values.gossipAllowedDiffMs }}
+  KURRENTDB_INDEX:  {{ quote .Values.persistence.index.mountPath }}
+  KURRENTDB_DB:  {{ quote .Values.persistence.data.mountPath }}
+
+  KURRENTDB_RUN_PROJECTIONS: {{ quote .Values.runProjections }}
+  KURRENTDB_INSECURE: {{ quote .Values.insecure }}
+  KURRENTDB_ENABLE_ATOM_PUB_OVER_HTTP: {{ quote .Values.enableAtomPubOverHTTP }}
+
   # Note: changing `Values.eventStoreConfig` won't change the configmap 
   # checksum and so won't make the pods restart
   {{- range $setting, $option := .Values.eventStoreConfig }}
