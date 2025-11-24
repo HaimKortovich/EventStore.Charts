@@ -145,16 +145,5 @@ external:
   name: ""
 
 runProjections: All
-insecure: false
+insecure: true
 enableAtomPubOverHTTP: true
-
-security:
-  certificates:
-    autogenerate:
-      enabled: true
-  admin:
-    autogenerateSecret:
-      enabled: true
-    passwordSecretRef:
-      name: null
-      key: null
