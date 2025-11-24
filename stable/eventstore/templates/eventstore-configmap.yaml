@@ -32,7 +32,7 @@ data:
   # ----------------------------------------------------------------------------
 
   ## Internal TCP port.
-  KURRENTDB_INT_TCP_PORT: {{ quote .Values.intTcpPort }}
+  KURRENTDB_REPLICATION_PORT: {{ quote .Values.intTcpPort }}
   ## External HTTP port.
   KURRENTDB_HTTP_PORT: {{ quote .Values.extHttpPort }}
   ## The number of nodes in the cluster.
