@@ -32,9 +32,10 @@ data:
   # ----------------------------------------------------------------------------
 
   ## Internal TCP port.
+  KURRENTDB_ALLOW_UNKNOWN_OPTION: "true"
   KURRENTDB_REPLICATION_PORT: {{ quote .Values.intTcpPort }}
   ## External HTTP port.
-  KURRENTDB_HTTP_PORT: {{ quote .Values.extHttpPort }}
+  KURRENTDB_NODE_PORT: {{ quote .Values.extHttpPort }}
   ## The number of nodes in the cluster.
   KURRENTDB_CLUSTER_SIZE: {{ quote .Values.clusterSize }}
   ## DNS name from which other nodes can be discovered.
